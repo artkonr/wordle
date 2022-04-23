@@ -1,5 +1,5 @@
 use rand::Rng;
-use crate::rules::Word;
+use crate::game::Word;
 
 pub trait Dictionary {
 

@@ -1,12 +1,10 @@
-extern crate core;
 
 mod bank;
-mod rules;
+mod game;
 
-use std::io::stdin;
 use std::process::exit;
-use colored::Colorize;
 use crate::bank::{Dictionary, StaticDict};
+use crate::game::start_game_loop;
 
 const ATTEMPT_COUNT: u8 = 6;
 
@@ -19,30 +17,11 @@ fn main() {
 
     println!("_ _ _ _ _");
 
-    for attempt_n in 0..ATTEMPT_COUNT {
-
-        let mut input = String::new();
-        stdin()
-            .read_line(&mut input)
-            .expect("Failed to read user input");
-
-        let guess = String::from(input.trim_end());
-
-        let result = secret.try_match(&guess);
-
-        if result.full_match() {
-            println!(
-                "{} {}",
-                "You won!".green(),
-                format!("You needed {} attempts", attempt_n).normal()
-            );
-            exit(0)
-        } else {
-            result.print_result_for(&guess);
+    match start_game_loop(&secret) {
+        Ok(_) => exit(0),
+        Err(e) => {
+            println!("{}", e);
         }
-
     }
-
-    println!("{} The word was '{}'", "You lost :(".red(), secret.reveal())
 
 }
