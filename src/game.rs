@@ -1,4 +1,3 @@
-use std::borrow::Borrow;
 use std::collections::{HashMap, HashSet};
 use std::error::Error;
 use std::fmt::{Display, Formatter};
@@ -276,7 +275,6 @@ pub enum MatchResult {
 
 
 mod test {
-    use std::io::stdin;
     use crate::game::{GuessResult, MatchResult, Word};
 
     #[test]
