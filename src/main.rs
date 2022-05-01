@@ -6,8 +6,6 @@ use std::process::exit;
 use crate::bank::{Dictionary, StaticDict};
 use crate::game::start_game_loop;
 
-const ATTEMPT_COUNT: u8 = 6;
-
 fn main() {
 
     println!("Welcome to Wordle!");
